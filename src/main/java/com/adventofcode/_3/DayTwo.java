@@ -5,9 +5,9 @@ import com.adventofcode.util.Result;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.*;
+import java.util.Scanner;
 
-public class DayOne {
+public class DayTwo {
 
     public static void main(String[] args) throws FileNotFoundException {
 

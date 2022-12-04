@@ -1,9 +1,9 @@
-package com.adventofcode.util;
+package com.adventofcode._3;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-public class InputUtil {
+public class Util {
 
     public static String identifyDuplicate(String input){
 
