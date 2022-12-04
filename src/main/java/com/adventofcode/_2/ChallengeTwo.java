@@ -10,7 +10,7 @@ public class ChallengeTwo {
 
     public static void main(String[] args) throws FileNotFoundException {
 
-        Scanner scanner = new Scanner(new File(Const.RESOURCE_PATH + "input/02-1.txt"));
+        Scanner scanner = new Scanner(new File(Const.RESOURCE_PATH + "input/02.txt"));
         Integer sum = 0;
 
         while (scanner.hasNextLine()) {

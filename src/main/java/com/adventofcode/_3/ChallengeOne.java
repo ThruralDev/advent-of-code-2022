@@ -11,7 +11,7 @@ public class ChallengeOne {
 
     public static void main(String[] args) throws FileNotFoundException {
 
-        Scanner scanner = new Scanner(new File(Const.RESOURCE_PATH + "input/03-1.txt"));
+        Scanner scanner = new Scanner(new File(Const.RESOURCE_PATH + "input/03.txt"));
         Result result = new Result();
 
         while (scanner.hasNextLine()) {

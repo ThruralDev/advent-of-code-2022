@@ -10,7 +10,7 @@ public class ChallengeOne {
 
     public static void main(String[] args) throws FileNotFoundException {
 
-        Scanner scanner = new Scanner(new File(Const.RESOURCE_PATH + "input/01-1.txt"));
+        Scanner scanner = new Scanner(new File(Const.RESOURCE_PATH + "input/01.txt"));
         List<Integer> caloryList = new ArrayList<>();
         int currentSum = 0;
         while (scanner.hasNextLine()) {
