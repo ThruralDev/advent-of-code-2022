@@ -7,7 +7,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
 
-public class DayOne {
+public class ChallengeOne {
 
     public static void main(String[] args) throws FileNotFoundException {
 
@@ -19,8 +19,8 @@ public class DayOne {
             String line = scanner.nextLine();
 
             // Divide input into two equal length sets and give it to helper function to get the char.
-            String[] compartmentContents = Util.divideStringIntoEqualSubstrings(line, line.length()/2);
-            String equalItemType = Util.pickOneEqualValueOfTwoSequences(compartmentContents[0], compartmentContents[1]);
+            String[] compartmentContents = DayThreeUtil.divideStringIntoEqualSubstrings(line, line.length()/2);
+            String equalItemType = DayThreeUtil.pickOneEqualValueOfTwoSequences(compartmentContents[0], compartmentContents[1]);
 
             // Convert char into numeric value as priority.
             String priorityString = Const.ALPHABET + Const.ALPHABET.toUpperCase();

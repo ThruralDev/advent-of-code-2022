@@ -6,7 +6,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-public class DayTwo {
+public class ChallengeOne {
 
     public static void main(String[] args) throws FileNotFoundException {
 
@@ -29,25 +29,11 @@ public class DayTwo {
                             .replace("z", "3")
                             .replace(" ", "")
             );
-            int enemyValue = enemyAndMyValue / 10;
-            int myValue = enemyAndMyValue % 10;
 
             // Accounting score.
-            switch (myValue) {
-                case 1: {
-                    sum += 0;
-                    break;
-                }
-                case 2: {
-                    sum += 3;
-                    sum += enemyValue;
-                    break;
-                }
-                case 3: {
-                    sum += 6;
-                    break;
-                }
-            }
+            sum += (enemyAndMyValue % 10);
+            if(enemyAndMyValue % 11 == 0) sum += 3;
+            else if(enemyAndMyValue == 12 || enemyAndMyValue == 23 || enemyAndMyValue == 31) sum += 6;
         }
         System.out.println(sum);
     }

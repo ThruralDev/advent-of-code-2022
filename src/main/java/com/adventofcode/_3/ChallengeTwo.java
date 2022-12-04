@@ -1,6 +1,7 @@
 package com.adventofcode._3;
 
 import com.adventofcode.util.Const;
+import com.adventofcode.util.GeneralUtil;
 import com.adventofcode.util.Result;
 
 import java.io.File;
@@ -9,7 +10,7 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class DayTwo {
+public class ChallengeTwo {
 
     public static void main(String[] args) throws FileNotFoundException {
 
@@ -22,7 +23,7 @@ public class DayTwo {
             StringBuilder groupItems = new StringBuilder();
             for(int i = 0; i < 3; i++){
                 String line = scanner.nextLine();
-                groupItems.append(Util.eliminateDuplicates(line));
+                groupItems.append(GeneralUtil.eliminateDuplicates(line));
             }
 
             // Sort chars in string alphabetically.
