@@ -6,9 +6,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
 
-import static java.util.Arrays.stream;
-
-public class ApplicationOne {
+public class DayOne {
 
     public static void main(String[] args) throws FileNotFoundException {
 
