@@ -17,29 +17,16 @@ public class ChallengeTwo {
 
             String line = scanner.nextLine();
 
-            int enemyAndMyValue = Integer.parseInt(
-                    line
-                            .toLowerCase()
-                            .trim()
-                            .replace("a", "1")
-                            .replace("b", "2")
-                            .replace("c", "3")
-                            .replace("x", "1")
-                            .replace("y", "2")
-                            .replace("z", "3")
-                            .replace(" ", "")
-            );
-            int enemyValue = enemyAndMyValue / 10;
-            int myValue = enemyAndMyValue % 10;
-
-            // Accounting score.
-            switch (myValue) {
-                case 1 -> sum += 0;
-                case 2 -> {
-                    sum += 3;
-                    sum += enemyValue;
-                }
-                case 3 -> sum += 6;
+            switch (line) {
+                case "A X" -> sum += 3;
+                case "A Y" -> sum += 4;
+                case "A Z" -> sum += 8;
+                case "B X" -> sum += 1;
+                case "B Y" -> sum += 5;
+                case "B Z" -> sum += 9;
+                case "C X" -> sum += 2;
+                case "C Y" -> sum += 6;
+                case "C Z" -> sum += 7;
             }
         }
         System.out.println(sum);
