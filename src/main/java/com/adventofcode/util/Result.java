@@ -4,26 +4,19 @@ public class Result {
 
     private Integer sum;
     private int counter;
+    private String sequence;
+
 
     public Result() {
 
         this.sum = 0;
         this.counter = 0;
-    }
-
-    public void setSum(Integer sum) {
-
-        this.sum = sum;
+        this.sequence = "";
     }
 
     public int getCounter() {
 
         return counter;
-    }
-
-    public void setCounter(int counter) {
-
-        this.counter = counter;
     }
 
     public Integer getSum() {
@@ -39,5 +32,15 @@ public class Result {
 
         this.sum += summand;
 
+    }
+
+    public String getSequence() {
+
+        return sequence;
+    }
+
+    public void addToSequence(String appendix){
+
+        this.sequence += appendix;
     }
 }
