@@ -14,6 +14,8 @@ public class ChallengeOne {
 
     public static void main(String[] args) throws FileNotFoundException {
 
+        boolean isChallengeOne = false;
+
         Scanner scanner = new Scanner(new File(Const.RESOURCE_PATH + "input/05-2.txt"));
         Result result = new Result();
 
@@ -50,8 +52,8 @@ public class ChallengeOne {
                         .substring(0, stackMap.get(instructionMap.get("origin")).length() - nextCrates.length());
                 stackMap.put(instructionMap.get("origin"), newStack);
 
-                // revert nexCreates.
-                nextCrates = new StringBuilder(nextCrates).reverse().toString();
+                // revert nexCreates (if challenge Nr.1).
+                if (isChallengeOne) nextCrates = new StringBuilder(nextCrates).reverse().toString();
 
                 // Append nextCrates to destination.
                 stackMap.put(instructionMap.get("destination"),
