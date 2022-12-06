@@ -17,9 +17,9 @@ public class ChallengeOne {
 
     public static void main(String[] args) throws InterruptedException {
 
+        int markerLen = 14;
         AtomicBoolean isSearching = new AtomicBoolean(true);
         Result result = new Result();
-        int markerLen = 14;
         LimitedSizeQueue<String> queue = new LimitedSizeQueue<>(markerLen);
 
         try (BufferedReader br = Files.newBufferedReader(Paths.get(Const.RESOURCE_PATH + "input/06.txt"))) {
