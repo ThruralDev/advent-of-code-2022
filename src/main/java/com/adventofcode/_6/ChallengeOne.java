@@ -1,5 +1,6 @@
 package com.adventofcode._6;
 
+import com.adventofcode.util.Const;
 import com.adventofcode.util.LimitedSizeQueue;
 import com.adventofcode.util.Result;
 
@@ -18,10 +19,10 @@ public class ChallengeOne {
 
         AtomicBoolean isSearching = new AtomicBoolean(true);
         Result result = new Result();
-        int markerLen = 4;
+        int markerLen = 14;
         LimitedSizeQueue<String> queue = new LimitedSizeQueue<>(markerLen);
 
-        try (BufferedReader br = Files.newBufferedReader(Paths.get("src/main/resources/input/06.txt"))) {
+        try (BufferedReader br = Files.newBufferedReader(Paths.get(Const.RESOURCE_PATH + "input/06.txt"))) {
             String line = br.readLine();
 
             Arrays.stream(line.split("")).forEach(e -> {
