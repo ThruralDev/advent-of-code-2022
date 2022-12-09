@@ -1,27 +1,22 @@
 package com.adventofcode._7;
 
-import com.adventofcode._7.filesystem.FileSystem;
-import com.adventofcode._7.filesystem.Member;
-import com.adventofcode._7.filesystem.Path;
 import com.adventofcode.util.Const;
 
 import java.io.BufferedReader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.HashMap;
-import java.util.Objects;
-
-import static com.adventofcode._7.Util.getCheckedCommandValue;
 
 public class ChallengeOne {
 
     public static void main(String[] args) throws Exception {
 
         String terminalLine;
-        String absolutePath;
+        String absolutePath = "/";
         String file = Const.RESOURCE_PATH + "input/07.txt";
         String commandValue;
         HashMap<String, Member> fileSizeMap = new HashMap<>();
+        fileSizeMap.put("/", new Member(0, Type.DIRECTORY));
 
         try (BufferedReader br = Files.newBufferedReader(Paths.get(file))) {
 
@@ -29,74 +24,71 @@ public class ChallengeOne {
 
                 switch (terminalLine) {
                     case "$ cd .." -> {
-
+                        absolutePath = absolutePath.replaceAll("\\/[a-zA-Z.]+/$", "/");
+                        System.out.println(
+                                "Moving one level up to " + absolutePath);
                     }
-                    case "ls" -> {
-
+                    case "$ ls" -> {
+                        // Sleep or do what you want.
                     }
                     default -> {
 
-                    }
-                }
-
-                if (!fileSystem.getIsBusy()) {
-
-                    commandOption = terminalLine
-                            .split(" ")[1];
-
-                    // Route execution of command based on Option.
-                    switch (commandOption) {
-                        case "ls" -> {
-                            fileSystem.setIsBusy(true);
+                        // When cd into subdirectory.
+                        if (terminalLine.startsWith("$ cd")) {
+                            commandValue = terminalLine.split(" ")[2];
+                            if (commandValue.equals("/"))
+                                absolutePath = "/";
+                            else
+                                absolutePath = absolutePath + commandValue + "/";
+                            System.out.println("Moved to " + absolutePath);
+                            if (fileSizeMap.get(absolutePath) == null)
+                                fileSizeMap.put(absolutePath, new Member(0, Type.DIRECTORY));
                         }
-                        case "cd" -> {
-
-                            // Filter provided value.
-                            commandValue = getCheckedCommandValue(terminalLine);
-
-                            // Updating path based on value.
-                            switch (commandValue) {
-                                case "." -> {
-                                    path.sleepOnTree();
-                                }
-                                case ".." -> {
-                                    path.moveOneToRoot();
-                                }
-                                default -> {
-
-                                    // Insert to map if not present yet.
-                                    if (commandValue.startsWith("/")) {
-                                        path.moveToAbsolute(commandValue);
-                                        fileSystem.registerDirectoryToFileSystem(path.getPath());
-                                    } else {
-                                        path.chainPath(commandValue);
-                                        fileSystem.registerDirectoryToFileSystem(path.getPath());
-                                    }
-                                }
+                        // When scanning a directory.
+                        else if (terminalLine.startsWith("dir")) {
+                            commandValue = terminalLine.split(" ")[1];
+                            System.out.println(
+                                    String.format("Scanned directory %s in path %s", commandValue, absolutePath));
+                            if (fileSizeMap.get(absolutePath + commandValue+ "/") == null) {
+                                fileSizeMap.put(absolutePath + commandValue+ "/", new Member(0, Type.DIRECTORY));
                             }
                         }
-                    }
-                } else {
-                    br.mark(100);
-                    if(terminalLine.startsWith("$")) {
-                        br.reset();
-                        fileSystem.setIsBusy(false);
-                        continue;
-                    }
-                    String[] listOutputParts = terminalLine.split(" ");
-                    boolean isDirectory = Objects.equals(listOutputParts[0], "dir");
+                        // When scanning a file.
+                        else {
+                            commandValue = terminalLine.split(" ")[0];
+                            String scannedFile = terminalLine.split(" ")[1];
+                            System.out.println(
+                                    String.format("Scanned file %s in path %s with size %s", scannedFile, absolutePath,
+                                            commandValue));
+                            int size = Integer.parseInt(commandValue);
+                            if (fileSizeMap.get(absolutePath + scannedFile) == null) {
+                                fileSizeMap.put(absolutePath + scannedFile, new Member(size, Type.FILE));
 
-                    // Appending member attributes to hashmap.
-                    if (isDirectory) {
-                        fileSystem.registerDirectoryToFileSystem(path.getPath() + listOutputParts[1]);
-                    }
-                    else {
-                        fileSystem.registerFileToFileSystem(path.getPath() + listOutputParts[1], listOutputParts[0]);
-                        System.out.println();
+                                // Increasing size of parent folders.
+                                String absoluteFeedPath = absolutePath;
+                                int sizeToReplace;
+                                while(!absoluteFeedPath.equals("/")){
+
+                                    sizeToReplace = fileSizeMap.get(absoluteFeedPath).getSize();
+                                    fileSizeMap.put(absoluteFeedPath, new Member(sizeToReplace + size, Type.DIRECTORY));
+                                    absoluteFeedPath = absoluteFeedPath.replaceAll("\\/[a-zA-Z.]+/$", "/");
+                                }
+                                 sizeToReplace = fileSizeMap.get(absoluteFeedPath).getSize();
+                                fileSizeMap.put(absoluteFeedPath, new Member(sizeToReplace + size, Type.DIRECTORY));
+                            }
+                        }
                     }
                 }
             }
         }
-        fileSystem.getFileSizeMember("/a/e/");
+
+        // TODO: 09.12.22 Printing out result.
+        fileSizeMap
+                .remove("/");
+        int result = fileSizeMap.values().stream()
+                .filter(x -> x.getType().equals(Type.DIRECTORY) && x.getSize() <= 100000)
+                .mapToInt(Member::getSize)
+                .sum();
+        System.out.println(result);
     }
 }

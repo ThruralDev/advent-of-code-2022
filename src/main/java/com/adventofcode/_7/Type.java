@@ -1,4 +1,4 @@
-package com.adventofcode._7.filesystem;
+package com.adventofcode._7;
 
 public enum Type {
     DIRECTORY,
