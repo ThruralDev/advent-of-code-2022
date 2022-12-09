@@ -13,7 +13,7 @@ public class Member {
 
     public int getSize() {
 
-        return size;
+        return this.size;
     }
 
     public void setSize(int size) {
