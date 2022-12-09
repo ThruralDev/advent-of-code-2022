@@ -120,6 +120,7 @@ public class Challenge {
                 .sorted(Comparator.comparing(x -> x.getValue().getSize()))
                 .filter(x -> x.getValue().getType().equals(Type.DIRECTORY) && x.getValue().getSize() >= memoryToRemove)
                 .findFirst();
+
         System.out.printf("\nYou have to delete directory %s with size of %s",
                 deletionCandidate.get().getKey(),
                 deletionCandidate.get().getValue().getSize());
