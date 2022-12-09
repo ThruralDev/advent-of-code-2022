@@ -82,7 +82,7 @@ public class ChallengeOne {
             }
         }
 
-        // TODO: 09.12.22 Printing out result.
+        // Printing out result.
         fileSizeMap
                 .remove("/");
         int result = fileSizeMap.values().stream()
