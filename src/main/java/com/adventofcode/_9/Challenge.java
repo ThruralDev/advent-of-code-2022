@@ -13,7 +13,7 @@ public class Challenge {
     public static void main(String[] args) throws IOException {
 
         String file = Const.RESOURCE_PATH + "input/09.txt";
-        Rope rope = new Rope();
+        Head rope = new Head(0, 0);
 
         // Need Command direction mapper.
         HashMap<String, Integer> commandDictionary = new HashMap<>() {{
@@ -43,7 +43,7 @@ public class Challenge {
                 }
             }
 
-            System.out.printf("\nTail was on %s positions", rope.getNumberOfTailPoints());
+            System.out.printf("\nTail was on %s different positions", rope.getNumberOfTailPoints());
         }
     }
 }
