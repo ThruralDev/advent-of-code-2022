@@ -14,6 +14,7 @@ public class Head {
         this.y = yPosition;
         ropeMembers = new LinkedList<>() {{
             add(new RopeMemberLinkImpl(0, 0));
+            add(new RopeMemberLinkImpl(0, 0));
             add(new RopeMemberTailImpl(0, 0));
         }};
     }
