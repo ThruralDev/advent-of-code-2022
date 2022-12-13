@@ -74,7 +74,6 @@ public class RopeMemberLinkImpl implements RopeMember {
 
     public void registerPosition(String memberPosition) {
         if (memberPosition != null){
-            System.out.printf("\nLink moves to pos. %s", memberPosition);
             positions.add(memberPosition);
         }
     }

@@ -16,7 +16,6 @@ public class Head {
             add(new RopeMemberLinkImpl(0,0));
             add(new RopeMemberTailImpl(0, 0));
         }};
-        System.out.println("All rope members start on pos. 0,0");
     }
 
     public int getX() {
@@ -36,35 +35,46 @@ public class Head {
     }
 
     public void moveVertically(int commandValue, int vector) {
-
+        int futureY;
         for (int i = 0; i < commandValue; i++) {
             setY(getY() + vector);
-            System.out.printf("\nHead moves to pos. %s,%s", getX(), getY());
             ListIterator<RopeMember> ropeIterator = ropeMembers.listIterator(0);
             for (int j = 0; j < ropeMembers.size(); j++){
+
+                // handle idle members.
+                futureY = this.getY();
+                futureY -= j;
+                if(futureY < 0) futureY = 0;
+
                 ropeIterator
                         .next()
-                        .pullVertically(this.getX(), this.getY(), vector);
+                        .pullVertically(this.getX(), futureY, vector);
             }
         }
     }
 
     public void moveHorizontally(int commandValue, int vector) {
 
+        int futureX;
         for (int i = 0; i < commandValue; i++) {
             setX(getX() + vector);
-            System.out.printf("\nHead moves to pos. %s,%s", getX(), getY());
             ListIterator<RopeMember> ropeIterator = ropeMembers.listIterator(0);
             for (int j = 0; j < ropeMembers.size(); j++){
+
+                // handle idle members.
+                futureX = this.getX();
+                futureX -= j;
+                if(futureX < 0) futureX = 0;
+
                 ropeIterator
                         .next()
-                        .pullHorizontally(this.getX(), this.getY(), vector);
+                        .pullHorizontally(futureX, this.getY(), vector);
             }
         }
     }
 
     public int getNumberOfDifferentTailPositions() {
 
-        return ropeMembers.get(0).getNumberOfDifferentPositions();
+        return ropeMembers.getLast().getNumberOfDifferentPositions();
     }
 }

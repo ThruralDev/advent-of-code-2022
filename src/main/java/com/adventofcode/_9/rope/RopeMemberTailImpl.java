@@ -84,7 +84,6 @@ public class RopeMemberTailImpl implements RopeMember {
     public void registerPosition(String memberPosition){
 
         if (memberPosition != null){
-            System.out.printf("\nTail moves to pos. %s", memberPosition);
             positions.add(memberPosition);
         }
     }
