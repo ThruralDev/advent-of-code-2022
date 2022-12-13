@@ -10,6 +10,9 @@ import java.nio.file.Paths;
 import java.util.List;
 
 public class Challenge {
+    public static void test(){
+        System.out.println("test");
+    }
 
     public static void main(String[] args) throws IOException {
 
