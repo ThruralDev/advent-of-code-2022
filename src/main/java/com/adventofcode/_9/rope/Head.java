@@ -1,15 +1,11 @@
-package com.adventofcode._9;
+package com.adventofcode._9.rope;
 
-import java.util.HashSet;
 import java.util.LinkedList;
 
 public class Head {
 
     LinkedList<RopeMember> chainMembers = new LinkedList<>(){{
         add(new Tail(0, 0));
-    }};
-    private final HashSet<String> tailPositions = new HashSet<>() {{
-        add("0,0");
     }};
     private int x;
     private int y;
@@ -39,10 +35,9 @@ public class Head {
 
         for (int i = 0; i < commandValue; i++) {
             setY(getY() + vector);
-            String test = chainMembers.listIterator(0)
+            chainMembers.listIterator(0)
                     .next()
                     .pullVertically(this.getX(), this.getY(), vector);
-            registerTailPosition(test);
         }
     }
 
@@ -50,22 +45,14 @@ public class Head {
 
         for (int i = 0; i < commandValue; i++) {
             setX(getX() + vector);
-            String test = chainMembers.listIterator(0)
+            chainMembers.listIterator(0)
                     .next()
                     .pullHorizontally(this.getX(), this.getY(), vector);
-            registerTailPosition(test);
         }
     }
 
-    private void registerTailPosition(String memberPosition){
+    public int getNumberOfTailPositions() {
 
-        if (memberPosition != null){
-            tailPositions.add(memberPosition);
-        }
-    }
-
-    public int getNumberOfTailPoints(){
-
-        return tailPositions.size();
+        return chainMembers.getLast().getNumberOfDifferentPositions();
     }
 }

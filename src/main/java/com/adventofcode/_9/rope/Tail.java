@@ -1,32 +1,18 @@
-package com.adventofcode._9;
+package com.adventofcode._9.rope;
 
-public class RopeMember {
+import java.util.HashSet;
 
-    private int x;
-    private int y;
+public class Tail extends Link implements RopeMember {
 
-    public RopeMember(int xPosition, int yPosition) {
-        this.x = xPosition;
-        this.y = yPosition;
+    private final HashSet<String> positions = new HashSet<>() {{
+        add("0,0");
+    }};
+
+    public Tail(int xPosition, int yPosition) {
+        super(xPosition, yPosition);
     }
 
-    public int getX() {
-        return x;
-    }
-
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    public int getY() {
-        return y;
-    }
-
-    public void setY(int y) {
-        this.y = y;
-    }
-
-    public String pullVertically(int prevX, int prevY, int vector) {
+    public void pullVertically(int prevX, int prevY, int vector) {
 
         if (isTooFarAway(prevY, true)){
             // First move tail along moving direction.
@@ -35,12 +21,11 @@ public class RopeMember {
             if(getX() != prevX){
                 setX(prevX);
             }
-            return getX() + "," + getY();
+            registerTailPosition(getX() + "," + getY());
         }
-        return null;
     }
 
-    public String pullHorizontally(int prevX, int prevY, int vector) {
+    public void pullHorizontally(int prevX, int prevY, int vector) {
 
         // Check if tail too far away.
         if (isTooFarAway(prevX, false)){
@@ -50,9 +35,8 @@ public class RopeMember {
             if(getY() != prevY){
                 setY(prevY);
             }
-            return getX() + "," + getY();
+            registerTailPosition(getX() + "," + getY());
         }
-        return null;
     }
 
     private boolean isTooFarAway(int prevValue, boolean isVertically) {
@@ -61,5 +45,18 @@ public class RopeMember {
             return prevValue - getY() > 1 || getY() - prevValue > 1;
         }
         return prevValue - getX() > 1 || getX() - prevValue > 1;
+    }
+
+
+    private void registerTailPosition(String memberPosition){
+
+        if (memberPosition != null){
+            positions.add(memberPosition);
+        }
+    }
+
+    public int getNumberOfDifferentPositions(){
+
+        return positions.size();
     }
 }

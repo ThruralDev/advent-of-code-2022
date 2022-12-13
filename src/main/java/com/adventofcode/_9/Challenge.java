@@ -1,5 +1,6 @@
 package com.adventofcode._9;
 
+import com.adventofcode._9.rope.Head;
 import com.adventofcode.util.Const;
 
 import java.io.BufferedReader;
@@ -41,7 +42,7 @@ public class Challenge {
                 }
             }
 
-            System.out.printf("\nTail was on %s different positions", rope.getNumberOfTailPoints());
+            System.out.printf("\nTail was on %s different positions", rope.getNumberOfTailPositions());
         }
     }
 }
