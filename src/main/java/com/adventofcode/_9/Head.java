@@ -7,7 +7,7 @@ public class Head {
     private final HashSet<String> tailPositions = new HashSet<>() {{
         add("0,0");
     }};
-    Tail tail = new Tail(0, 0);
+    Link tail = new Link(0, 0);
     private int x;
     private int y;
 
@@ -35,7 +35,6 @@ public class Head {
     public void moveVertically(int commandValue, int vector) {
         for (int i = 0; i < commandValue; i++) {
             setY(getY() + vector);
-
             registerTailPosition(tail.pullVertically(this.getX(), this.getY(), vector));
         }
     }
