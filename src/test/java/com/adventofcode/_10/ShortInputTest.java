@@ -1,6 +1,6 @@
 package com.adventofcode._10;
 
-import com.adventofcode._10.device.ClockCircuit;
+import com.adventofcode._10.device.Processor;
 import com.adventofcode._10.device.HandheldDevice;
 import com.adventofcode.util.Const;
 import org.junit.jupiter.api.Assertions;
@@ -23,7 +23,7 @@ public class ShortInputTest {
     public ShortInputTest() throws IOException {
 
         handheldDevice = new HandheldDevice(
-                new ClockCircuit(Const.RESOURCE_TEST_PATH + "10/short.txt")
+                new Processor(Const.RESOURCE_TEST_PATH + "10/short.txt")
         );
     }
 

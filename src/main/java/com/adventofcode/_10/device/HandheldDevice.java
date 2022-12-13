@@ -4,18 +4,23 @@ import java.util.List;
 
 public class HandheldDevice {
 
-    private final ClockCircuit clockCircuit;
-    public HandheldDevice(ClockCircuit clockCircuit) {
-        this.clockCircuit = clockCircuit;
+    private final Processor processor;
+    public HandheldDevice(Processor clockCircuit) {
+        this.processor = clockCircuit;
     }
 
     public void pressPowerButton() {
 
-        clockCircuit.run();
+        processor.run();
     }
 
     public List<String> getLogOfAllInstructions() {
 
-        return clockCircuit.getLineList();
+        return processor.getLineList();
+    }
+
+    public int readSignalStrengthSum(){
+
+        return processor.getSignalStrengthSum();
     }
 }
