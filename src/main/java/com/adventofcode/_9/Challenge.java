@@ -1,6 +1,6 @@
 package com.adventofcode._9;
 
-import com.adventofcode._9.rope.Head;
+import com.adventofcode._9.rope.RopeHead;
 import com.adventofcode.util.Const;
 
 import java.io.BufferedReader;
@@ -14,7 +14,7 @@ public class Challenge {
     public static void main(String[] args) throws IOException {
 
         String file = Const.RESOURCE_PATH + "input/09.txt";
-        Head rope = new Head( 0, 0);
+        RopeHead rope = new RopeHead( 0, 0);
 
         // Need Command direction mapper.
         HashMap<String, Integer> commandDictionary = new HashMap<>() {{

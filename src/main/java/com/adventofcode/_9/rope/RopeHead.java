@@ -3,18 +3,18 @@ package com.adventofcode._9.rope;
 import java.util.LinkedList;
 import java.util.ListIterator;
 
-public class Head {
+public class RopeHead {
 
     LinkedList<RopeMember> ropeMembers;
     private int x;
     private int y;
 
-    public Head(int xPosition, int yPosition) {
+    public RopeHead(int xPosition, int yPosition) {
         this.x = xPosition;
         this.y = yPosition;
         ropeMembers = new LinkedList<>() {{
-            add(new RopeMemberLinkImpl(0,0));
-            add(new RopeMemberTailImpl(0, 0));
+            add(new RopeMember(0,0));
+            add(new RopeMember(0,0));
         }};
         System.out.println("All rope members start on pos. 0,0");
     }
