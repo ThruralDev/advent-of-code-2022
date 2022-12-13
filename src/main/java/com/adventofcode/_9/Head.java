@@ -1,13 +1,16 @@
 package com.adventofcode._9;
 
 import java.util.HashSet;
+import java.util.LinkedList;
 
 public class Head {
-    
+
+    LinkedList<RopeMember> chainMembers = new LinkedList<>(){{
+        add(new Tail(0, 0));
+    }};
     private final HashSet<String> tailPositions = new HashSet<>() {{
         add("0,0");
     }};
-    Link tail = new Link(0, 0);
     private int x;
     private int y;
 
@@ -33,9 +36,13 @@ public class Head {
     }
 
     public void moveVertically(int commandValue, int vector) {
+
         for (int i = 0; i < commandValue; i++) {
             setY(getY() + vector);
-            registerTailPosition(tail.pullVertically(this.getX(), this.getY(), vector));
+            String test = chainMembers.listIterator(0)
+                    .next()
+                    .pullVertically(this.getX(), this.getY(), vector);
+            registerTailPosition(test);
         }
     }
 
@@ -43,13 +50,17 @@ public class Head {
 
         for (int i = 0; i < commandValue; i++) {
             setX(getX() + vector);
-            registerTailPosition(tail.pullHorizontally(this.getX(), this.getY(), vector));
+            String test = chainMembers.listIterator(0)
+                    .next()
+                    .pullHorizontally(this.getX(), this.getY(), vector);
+            registerTailPosition(test);
         }
     }
 
     private void registerTailPosition(String memberPosition){
+
         if (memberPosition != null){
-            tailPositions.add(tail.getX() + "," + tail.getY());
+            tailPositions.add(memberPosition);
         }
     }
 

@@ -1,11 +1,11 @@
 package com.adventofcode._9;
 
-public class Link {
+public class RopeMember {
 
     private int x;
     private int y;
 
-    public Link(int xPosition, int yPosition) {
+    public RopeMember(int xPosition, int yPosition) {
         this.x = xPosition;
         this.y = yPosition;
     }
