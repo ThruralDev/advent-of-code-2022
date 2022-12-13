@@ -39,7 +39,7 @@ public class Head {
         for (int i = 0; i < commandValue; i++) {
             setY(getY() + vector);
             System.out.println();
-            System.out.println("Head  pos. : " + getX() + "," + getY());
+            System.out.println("Head pos.: " + getX() + "," + getY());
             ListIterator<RopeMember> ropeIterator = ropeMembers.listIterator(0);
             for (int j = 0; j < ropeMembers.size(); j++){
 
@@ -61,7 +61,7 @@ public class Head {
         for (int i = 0; i < commandValue; i++) {
             setX(getX() + vector);
             System.out.println();
-            System.out.println("Head  pos. : " + getX() + "," + getY());
+            System.out.println("Head pos.: " + getX() + "," + getY());
             ListIterator<RopeMember> ropeIterator = ropeMembers.listIterator(0);
             for (int j = 0; j < ropeMembers.size(); j++){
 
