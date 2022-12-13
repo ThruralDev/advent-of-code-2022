@@ -2,19 +2,25 @@ package com.adventofcode._9;
 
 import com.adventofcode._9.rope.RopeHead;
 import com.adventofcode.util.Const;
+import com.adventofcode.util.GeneralUtil;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.Reader;
+import java.io.StringReader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class Challenge {
 
     public static void main(String[] args) throws IOException {
 
         String file = Const.RESOURCE_PATH + "input/09.txt";
-        RopeHead rope = new RopeHead( 0, 0);
+        List<String> lineList = GeneralUtil.extractLinesOfInputFile(Files.newBufferedReader(Paths.get(file)));
+        RopeHead rope = new RopeHead(0, 0);
 
         // Need Command direction mapper.
         HashMap<String, Integer> commandDictionary = new HashMap<>() {{
@@ -24,25 +30,20 @@ public class Challenge {
             put("L", -1);
         }};
 
-        try (BufferedReader br = Files.newBufferedReader(Paths.get(file))) {
+        lineList.forEach(line -> {
+            Command command = new Command(
+                    line.split(" ")[0],
+                    Integer.parseInt(line.split(" ")[1]),
+                    commandDictionary.get(line.split(" ")[0])
+            );
 
-            String terminalLine;
-            while ((terminalLine = br.readLine()) != null) {
+            switch (command.id()) {
 
-                Command command = new Command(
-                        terminalLine.split(" ")[0],
-                        Integer.parseInt(terminalLine.split(" ")[1]),
-                        commandDictionary.get(terminalLine.split(" ")[0])
-                );
-
-                switch (command.id()) {
-
-                    case "U", "D" -> rope.moveVertically(command.value(), command.vector());
-                    case "R", "L" -> rope.moveHorizontally(command.value(), command.vector());
-                }
+                case "U", "D" -> rope.moveVertically(command.value(), command.vector());
+                case "R", "L" -> rope.moveHorizontally(command.value(), command.vector());
             }
+        });
 
-            System.out.printf("\nTail was on %s different positions", rope.getNumberOfDifferentTailPositions());
-        }
+        System.out.printf("\nTail was on %s different positions", rope.getNumberOfDifferentTailPositions());
     }
 }

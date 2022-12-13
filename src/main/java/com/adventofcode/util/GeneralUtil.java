@@ -1,9 +1,26 @@
 package com.adventofcode.util;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.Reader;
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 public class GeneralUtil {
+
+    public static List<String> extractLinesOfInputFile(Reader reader) throws IOException {
+        BufferedReader br = new BufferedReader(reader);
+        List<String> lineList = new ArrayList<>();
+
+        String terminalLine;
+        while ((terminalLine = br.readLine()) != null){
+            lineList.add(terminalLine);
+        }
+
+        return lineList;
+    }
 
     public static String identifyDuplicate(String input){
 
