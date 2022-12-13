@@ -5,18 +5,23 @@ import java.util.ListIterator;
 
 public class RopeHead {
 
-    LinkedList<RopeMember> ropeMembers;
     private int x;
     private int y;
 
-    public RopeHead(int xPosition, int yPosition) {
+    LinkedList<RopeMember> ropeMembers;
+
+    public RopeHead(int ropeLength, int xPosition, int yPosition) {
         this.x = xPosition;
         this.y = yPosition;
         ropeMembers = new LinkedList<>() {{
-            add(new RopeMember(0,0));
-            add(new RopeMember(0,0));
+            for(int i = 0; i < ropeLength;i++) add(new RopeMember(0,0));
         }};
         System.out.println("All rope members start on pos. 0,0");
+    }
+
+    public RopeHead(int x, int y) {
+        this.x = x;
+        this.y = y;
     }
 
     public int getX() {
@@ -65,6 +70,6 @@ public class RopeHead {
 
     public int getNumberOfDifferentTailPositions() {
 
-        return ropeMembers.get(0).getNumberOfDifferentPositions();
+        return ropeMembers.getLast().getNumberOfDifferentTailPositions();
     }
 }

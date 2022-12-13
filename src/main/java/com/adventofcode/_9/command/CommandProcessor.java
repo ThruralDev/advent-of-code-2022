@@ -1,31 +1,25 @@
-package com.adventofcode._9;
+package com.adventofcode._9.command;
 
 import com.adventofcode._9.rope.RopeHead;
-import com.adventofcode.util.Const;
 import com.adventofcode.util.GeneralUtil;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 
-public class Day9Tests {
+public class CommandProcessor{
 
-    String file;
     List<String> lineList;
     RopeHead ropeHead;
 
-    public Day9Tests() throws IOException {
-        file = Const.RESOURCE_TEST_PATH + "09.txt";
+    public CommandProcessor(String file, String ropeLength) throws IOException {
+
         lineList = GeneralUtil.extractLinesOfInputFile(Files.newBufferedReader(Paths.get(file)));
-        ropeHead = new RopeHead(0,0);
-        processCommands();
+        ropeHead = new RopeHead(Integer.parseInt(ropeLength),0, 0);
     }
 
-    public void processCommands (){
+    public void run() {
         lineList.forEach(line -> {
 
             String commandDirection = line.split(" ")[0];
@@ -43,19 +37,10 @@ public class Day9Tests {
                 case "R", "L" -> ropeHead.moveHorizontally(command.value(), command.vector());
             }
         });
+        System.out.printf("\nTail was on %s different positions", ropeHead.getNumberOfDifferentTailPositions());
     }
 
-    @Test
-    @DisplayName("Check if 13 is result of short test-input.")
-    public void CheckIf13IsResultOfShortInput() {
-
-        Assertions.assertEquals(ropeHead.getNumberOfDifferentTailPositions(), 13);
-    }
-
-    @Test
-    @DisplayName("Check if 10 is result of short test-input.")
-    public void CheckIf10IsNotResultOfShortInput() {
-
-        Assertions.assertNotEquals(ropeHead.getNumberOfDifferentTailPositions(), 10);
+    public RopeHead getRopeHead() {
+        return ropeHead;
     }
 }

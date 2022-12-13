@@ -1,4 +1,4 @@
-package com.adventofcode._9;
+package com.adventofcode._9.command;
 
 import java.util.HashMap;
 

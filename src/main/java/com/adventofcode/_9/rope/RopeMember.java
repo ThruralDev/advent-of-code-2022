@@ -2,33 +2,34 @@ package com.adventofcode._9.rope;
 
 import java.util.HashSet;
 
-public class RopeMember {
+public class RopeMember extends RopeHead {
 
-    private int x;
-    private int y;
     private final HashSet<String> positions = new HashSet<>() {{
         add("0,0");
     }};
 
     public RopeMember(int xPosition, int yPosition) {
-        this.x = xPosition;
-        this.y = yPosition;
+        super(xPosition,yPosition);
     }
 
+    @Override
     public int getX() {
-        return x;
+        return super.getX();
     }
 
+    @Override
     public void setX(int x) {
-        this.x = x;
+        super.setX(x);
     }
 
+    @Override
     public int getY() {
-        return y;
+        return super.getY();
     }
 
+    @Override
     public void setY(int y) {
-        this.y = y;
+        super.setY(y);
     }
 
     public void moveVertically(int vector) {
@@ -53,6 +54,7 @@ public class RopeMember {
             }
         }
     }
+
 
     public void pullVertically(int prevX, int prevY, int vector) {
 
@@ -87,8 +89,7 @@ public class RopeMember {
         return prevValue - getX() > 1 || getX() - prevValue > 1;
     }
 
-    public int getNumberOfDifferentPositions(){
-
+    public int getNumberOfDifferentTailPositions() {
         return positions.size();
     }
 }
