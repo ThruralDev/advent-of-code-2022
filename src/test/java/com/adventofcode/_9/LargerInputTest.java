@@ -14,7 +14,7 @@ public class LargerInputTest {
     RopeHead ropeHead;
 
     public LargerInputTest() throws IOException {
-        CommandProcessor commandProcessor = new CommandProcessor(Const.RESOURCE_TEST_PATH + "09-larger.txt", "10");
+        CommandProcessor commandProcessor = new CommandProcessor(Const.RESOURCE_TEST_PATH + "09/larger.txt", "10");
         commandProcessor.run();
         this.ropeHead = commandProcessor.getRopeHead();
     }

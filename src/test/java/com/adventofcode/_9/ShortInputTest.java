@@ -14,7 +14,7 @@ public class ShortInputTest {
     RopeHead ropeHead;
 
     public ShortInputTest() throws IOException {
-        CommandProcessor commandProcessor = new CommandProcessor(Const.RESOURCE_TEST_PATH + "09-smaller.txt", "2");
+        CommandProcessor commandProcessor = new CommandProcessor(Const.RESOURCE_TEST_PATH + "09/smaller.txt", "2");
         commandProcessor.run();
         this.ropeHead = commandProcessor.getRopeHead();
     }
