@@ -2,7 +2,7 @@ package com.adventofcode._9.rope;
 
 import java.util.HashSet;
 
-public class Link implements RopeMember {
+public class RopeMemberLinkImpl implements RopeMember {
 
     private int x;
     private int y;
@@ -10,7 +10,7 @@ public class Link implements RopeMember {
         add("0,0");
     }};
 
-    public Link(int xPosition, int yPosition) {
+    public RopeMemberLinkImpl(int xPosition, int yPosition) {
         this.x = xPosition;
         this.y = yPosition;
     }
@@ -31,35 +31,50 @@ public class Link implements RopeMember {
         this.y = y;
     }
 
+    public void moveVertically(int vector) {
+
+        setY(getY() + vector);
+    }
+
+    public void moveHorizontally(int vector) {
+
+        setX(getX() + vector);
+    }
+
+    public void moveToSameAxis(int value, boolean isVertically) {
+
+        if(isVertically){
+            if(getX() != value){
+                setX(value);
+            }
+        }else{
+            if(getY() != value){
+                setY(value);
+            }
+        }
+    }
+
     public void pullVertically(int prevX, int prevY, int vector) {
 
         if (isTooFarAway(prevY, true)){
-            // First move tail along moving direction.
-            setY(getY() + vector);
-            // Shift to head's axis if not on same axis.
-            if(getX() != prevX){
-                setX(prevX);
-            }
+            moveVertically(vector);
+            moveToSameAxis(prevX, true);
             registerPosition(getX() + "," + getY());
         }
     }
 
-    public void pullHorizontally (int prevX, int prevY, int vector) {
+    public void pullHorizontally(int prevX, int prevY, int vector) {
 
-        // Check if tail too far away.
         if (isTooFarAway(prevX, false)){
-            // First move tail along moving direction.
-            setX(getX() + vector);
-            // Shift to head's axis if not on same axis.
-            if(getY() != prevY){
-                setY(prevY);
-            }
+            moveHorizontally(vector);
+            moveToSameAxis(prevY, false);
             registerPosition(getX() + "," + getY());
         }
     }
 
     public void registerPosition(String memberPosition) {
         if (memberPosition != null){
+            System.out.printf("\nLink moves to pos. %s", memberPosition);
             positions.add(memberPosition);
         }
     }
