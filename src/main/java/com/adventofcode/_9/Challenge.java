@@ -7,7 +7,6 @@ import com.adventofcode.util.GeneralUtil;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.HashMap;
 import java.util.List;
 
 public class Challenge {
@@ -18,22 +17,18 @@ public class Challenge {
         List<String> lineList = GeneralUtil.extractLinesOfInputFile(Files.newBufferedReader(Paths.get(file)));
         RopeHead rope = new RopeHead(0, 0);
 
-        // Need Command direction mapper.
-        HashMap<String, Integer> commandDictionary = new HashMap<>() {{
-            put("U", 1);
-            put("D", -1);
-            put("R", 1);
-            put("L", -1);
-        }};
-
         lineList.forEach(line -> {
+
+            String commandDirection = line.split(" ")[0];
+            int commandValue = Integer.parseInt(line.split(" ")[1]);
+
             Command command = new Command(
-                    line.split(" ")[0],
-                    Integer.parseInt(line.split(" ")[1]),
-                    commandDictionary.get(line.split(" ")[0])
+                    commandDirection,
+                    commandValue,
+                    CommandDictionary.getCommandVector(commandDirection)
             );
 
-            switch (command.id()) {
+            switch (command.direction()) {
 
                 case "U", "D" -> rope.moveVertically(command.value(), command.vector());
                 case "R", "L" -> rope.moveHorizontally(command.value(), command.vector());
