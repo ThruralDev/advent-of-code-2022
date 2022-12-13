@@ -1,4 +1,4 @@
-package com.adventofcode._9;
+package com.adventofcode._10;
 
 import org.junit.jupiter.api.Test;
 
@@ -9,6 +9,6 @@ public class MainTest {
     @Test
     public void main() throws IOException {
 
-        Challenge.main(new String[]{"src/test/resources/09/smaller.txt", "2"});
+        Challenge.main(new String[]{"src/test/resources/10/short.txt"});
     }
 }
