@@ -13,7 +13,7 @@ public class Challenge {
 
     public static void main(String[] args) throws IOException {
 
-        String file = Const.RESOURCE_PATH + "input/09-test.txt";
+        String file = Const.RESOURCE_PATH + "input/09.txt";
         Head rope = new Head( 0, 0);
 
         // Need Command direction mapper.
