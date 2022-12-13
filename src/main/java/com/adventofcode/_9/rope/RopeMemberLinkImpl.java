@@ -43,6 +43,7 @@ public class RopeMemberLinkImpl implements RopeMember {
 
     // TODO: 13.12.22 Make this happen to all members at each step. 
     public void moveTowardsSameAxis(int value, boolean isVertically) {
+
         int offsetDirectionX = getX() - value;
         int offsetDirectionY = getY() - value;
         int offsetX;
@@ -54,10 +55,12 @@ public class RopeMemberLinkImpl implements RopeMember {
         if(isVertically){
             if(getX() != value){
                 setX(getX() + offsetX);
+                System.out.println("Move towards.");
             }
         }else{
             if(getY() != value){
                 setY(getY() + offsetY);
+                System.out.println("Move towards.");
             }
         }
     }
@@ -82,7 +85,7 @@ public class RopeMemberLinkImpl implements RopeMember {
 
     public void registerPosition(String memberPosition) {
 
-        System.out.println("Link moves now to pos. " + memberPosition);
+        System.out.println("Link  pos. : " + memberPosition);
         if (memberPosition != null){
             positions.add(memberPosition);
         }
