@@ -32,14 +32,12 @@ public class Head {
         this.y = y;
     }
 
-    public void moveUp(int commandValue, int vector) {
+    public void moveVertically(int commandValue, int vector) {
         for (int i = 0; i < commandValue; i++) {
-            // Move 
             setY(getY() + vector);
-            
 
             // Check if tail too far away.
-            if (getY() - tail.getY() > 1){
+            if (getY() - tail.getY() > 1 || tail.getY() - getY() > 1){
                 // First move tail along moving direction.
                 tail.setY(tail.getY() + vector);
                 // Shift to head's axis if not on same axis.
@@ -51,52 +49,13 @@ public class Head {
         }
     }
 
-    public void moveDown(int commandValue, int vector) {
-        for (int i = 0; i < commandValue; i++) {
-            // Move 
-            setY(getY() + vector);
-            
-
-            // Check if tail too far away.
-            if (tail.getY() - getY() > 1){
-                // First move tail along moving direction.
-                tail.setY(tail.getY() + vector);
-                // Shift to head's axis if not on same axis.
-                if(tail.getX() != getX()){
-                    tail.setX(getX());
-                }
-                registerTailPosition();
-            }
-        }
-    }
-
-    public void moveRight(int commandValue, int vector) {
+    public void moveHorizontally(int commandValue, int vector) {
 
         for (int i = 0; i < commandValue; i++) {
-            // Move 
             setX(getX() + vector);
-            
 
             // Check if tail too far away.
-            if (getX() - tail.getX() > 1){
-                // First move tail along moving direction.
-                tail.setX(tail.getX() + vector);
-                // Shift to head's axis if not on same axis.
-                if(tail.getY() != getY()){
-                    tail.setY(getY());
-                }
-                registerTailPosition();
-            }
-        }
-    }
-
-    public void moveLeft(int commandValue, int vector) {
-        for (int i = 0; i < commandValue; i++) {
-            // Move 
-            setX(getX() + vector);
-            
-            // Check if tail too far away.
-            if (tail.getX() - getX() > 1){
+            if (getX() - tail.getX() > 1 || tail.getX() - getX() > 1){
                 // First move tail along moving direction.
                 tail.setX(tail.getX() + vector);
                 // Shift to head's axis if not on same axis.

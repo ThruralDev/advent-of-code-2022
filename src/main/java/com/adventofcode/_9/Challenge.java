@@ -36,10 +36,8 @@ public class Challenge {
 
                 switch (command.id()) {
 
-                    case "U" -> rope.moveUp(command.value(), command.vector());
-                    case "D" -> rope.moveDown(command.value(), command.vector());
-                    case "R" -> rope.moveRight(command.value(), command.vector());
-                    case "L" -> rope.moveLeft(command.value(), command.vector());
+                    case "U", "D" -> rope.moveVertically(command.value(), command.vector());
+                    case "R", "L" -> rope.moveHorizontally(command.value(), command.vector());
                 }
             }
 
