@@ -6,5 +6,7 @@ public interface RopeMember {
 
     void pullHorizontally (int prevX, int prevY, int vector);
 
+    void registerPosition(String memberPosition);
+
     int getNumberOfDifferentPositions();
 }

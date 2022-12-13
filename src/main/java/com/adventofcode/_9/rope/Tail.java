@@ -21,7 +21,7 @@ public class Tail extends Link implements RopeMember {
             if(getX() != prevX){
                 setX(prevX);
             }
-            registerTailPosition(getX() + "," + getY());
+            registerPosition(getX() + "," + getY());
         }
     }
 
@@ -35,7 +35,7 @@ public class Tail extends Link implements RopeMember {
             if(getY() != prevY){
                 setY(prevY);
             }
-            registerTailPosition(getX() + "," + getY());
+            registerPosition(getX() + "," + getY());
         }
     }
 
@@ -48,7 +48,7 @@ public class Tail extends Link implements RopeMember {
     }
 
 
-    private void registerTailPosition(String memberPosition){
+    public void registerPosition(String memberPosition){
 
         if (memberPosition != null){
             positions.add(memberPosition);

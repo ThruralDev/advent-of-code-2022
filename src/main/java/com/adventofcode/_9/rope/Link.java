@@ -40,6 +40,7 @@ public class Link implements RopeMember {
             if(getX() != prevX){
                 setX(prevX);
             }
+            registerPosition(getX() + "," + getY());
         }
     }
 
@@ -53,6 +54,13 @@ public class Link implements RopeMember {
             if(getY() != prevY){
                 setY(prevY);
             }
+            registerPosition(getX() + "," + getY());
+        }
+    }
+
+    public void registerPosition(String memberPosition) {
+        if (memberPosition != null){
+            positions.add(memberPosition);
         }
     }
 

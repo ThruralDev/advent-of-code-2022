@@ -4,7 +4,8 @@ import java.util.LinkedList;
 
 public class Head {
 
-    LinkedList<RopeMember> chainMembers = new LinkedList<>(){{
+    LinkedList<RopeMember> ropeMembers = new LinkedList<>(){{
+        add(new Link(0, 0));
         add(new Tail(0, 0));
     }};
     private int x;
@@ -35,9 +36,11 @@ public class Head {
 
         for (int i = 0; i < commandValue; i++) {
             setY(getY() + vector);
-            chainMembers.listIterator(0)
-                    .next()
-                    .pullVertically(this.getX(), this.getY(), vector);
+            for(int j = 0; j < ropeMembers.size(); j++){
+                ropeMembers.listIterator(j)
+                        .next()
+                        .pullVertically(this.getX(), this.getY(), vector);
+            }
         }
     }
 
@@ -45,14 +48,16 @@ public class Head {
 
         for (int i = 0; i < commandValue; i++) {
             setX(getX() + vector);
-            chainMembers.listIterator(0)
-                    .next()
-                    .pullHorizontally(this.getX(), this.getY(), vector);
+            for(int j = 0; j < ropeMembers.size(); j++){
+                ropeMembers.listIterator(0)
+                        .next()
+                        .pullHorizontally(this.getX(), this.getY(), vector);
+            }
         }
     }
 
     public int getNumberOfTailPositions() {
 
-        return chainMembers.getLast().getNumberOfDifferentPositions();
+        return ropeMembers.get(0).getNumberOfDifferentPositions();
     }
 }
