@@ -1,5 +1,6 @@
 package com.adventofcode._9.rope;
 
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.ListIterator;
 
@@ -14,7 +15,7 @@ public class Head {
         this.y = yPosition;
         ropeMembers = new LinkedList<>() {{
             add(new RopeMemberLinkImpl(0, 0));
-            add(new RopeMemberLinkImpl(0, 0));
+            //add(new RopeMemberLinkImpl(0, 0));
             add(new RopeMemberTailImpl(0, 0));
         }};
     }
@@ -81,5 +82,9 @@ public class Head {
     public int getNumberOfDifferentTailPositions() {
 
         return ropeMembers.getLast().getNumberOfDifferentPositions();
+    }
+
+    public HashSet<String> getTailPositionsAsSet() {
+        return ropeMembers.getLast().getPositions();
     }
 }

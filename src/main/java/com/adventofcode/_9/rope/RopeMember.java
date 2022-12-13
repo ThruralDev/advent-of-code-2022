@@ -1,5 +1,7 @@
 package com.adventofcode._9.rope;
 
+import java.util.HashSet;
+
 public interface RopeMember {
 
     void moveVertically(int vector);
@@ -15,4 +17,6 @@ public interface RopeMember {
     void registerPosition(String memberPosition);
 
     int getNumberOfDifferentPositions();
+
+    HashSet<String> getPositions();
 }

@@ -94,11 +94,16 @@ public class RopeMemberTailImpl implements RopeMember {
         System.out.println("Tail pos.: " + memberPosition);
         if (memberPosition != null){
             positions.add(memberPosition);
+            positions.forEach(System.out::println);
         }
     }
 
     public int getNumberOfDifferentPositions(){
 
         return positions.size();
+    }
+
+    public HashSet<String> getPositions() {
+        return positions;
     }
 }

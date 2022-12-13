@@ -103,4 +103,9 @@ public class RopeMemberLinkImpl implements RopeMember {
 
         return positions.size();
     }
+
+    public HashSet<String> getPositions() {
+
+        return positions;
+    }
 }
