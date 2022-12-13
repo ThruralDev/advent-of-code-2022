@@ -36,16 +36,7 @@ public class Head {
         for (int i = 0; i < commandValue; i++) {
             setY(getY() + vector);
 
-            // Check if tail too far away.
-            if (getY() - tail.getY() > 1 || tail.getY() - getY() > 1){
-                // First move tail along moving direction.
-                tail.setY(tail.getY() + vector);
-                // Shift to head's axis if not on same axis.
-                if(tail.getX() != getX()){
-                    tail.setX(getX());
-                }
-                registerTailPosition();
-            }
+            registerTailPosition(tail.pullVertically(this.getX(), this.getY(), vector));
         }
     }
 
@@ -53,23 +44,14 @@ public class Head {
 
         for (int i = 0; i < commandValue; i++) {
             setX(getX() + vector);
-
-            // Check if tail too far away.
-            if (getX() - tail.getX() > 1 || tail.getX() - getX() > 1){
-                // First move tail along moving direction.
-                tail.setX(tail.getX() + vector);
-                // Shift to head's axis if not on same axis.
-                if(tail.getY() != getY()){
-                    tail.setY(getY());
-                }
-                registerTailPosition();
-            }
+            registerTailPosition(tail.pullHorizontally(this.getX(), this.getY(), vector));
         }
     }
 
-    private void registerTailPosition(){
-
-        tailPositions.add(tail.getX() + "," + tail.getY());
+    private void registerTailPosition(String memberPosition){
+        if (memberPosition != null){
+            tailPositions.add(tail.getX() + "," + tail.getY());
+        }
     }
 
     public int getNumberOfTailPoints(){
