@@ -13,7 +13,8 @@ public class Head {
         this.x = xPosition;
         this.y = yPosition;
         ropeMembers = new LinkedList<>() {{
-            add(new RopeMemberLinkImpl(0,0));
+            add(new RopeMemberLinkImpl(0, 0));
+            //add(new RopeMemberLinkImpl(0, 0));
             add(new RopeMemberTailImpl(0, 0));
         }};
     }
@@ -38,6 +39,7 @@ public class Head {
         int futureY;
         for (int i = 0; i < commandValue; i++) {
             setY(getY() + vector);
+            System.out.println("Head moves now to pos. " + getX() + "," + getY());
             ListIterator<RopeMember> ropeIterator = ropeMembers.listIterator(0);
             for (int j = 0; j < ropeMembers.size(); j++){
 
@@ -58,6 +60,7 @@ public class Head {
         int futureX;
         for (int i = 0; i < commandValue; i++) {
             setX(getX() + vector);
+            System.out.println("Head moves now to pos. " + getX() + "," + getY());
             ListIterator<RopeMember> ropeIterator = ropeMembers.listIterator(0);
             for (int j = 0; j < ropeMembers.size(); j++){
 

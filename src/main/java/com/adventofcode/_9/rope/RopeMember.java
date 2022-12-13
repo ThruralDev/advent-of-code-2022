@@ -10,7 +10,7 @@ public interface RopeMember {
 
     void pullHorizontally (int prevX, int prevY, int vector);
 
-    void moveToSameAxis(int value, boolean isVertically);
+    void moveTowardsSameAxis(int value, boolean isVertically);
 
     void registerPosition(String memberPosition);
 

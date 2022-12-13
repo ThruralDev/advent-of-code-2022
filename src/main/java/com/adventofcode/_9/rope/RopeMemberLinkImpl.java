@@ -41,15 +41,23 @@ public class RopeMemberLinkImpl implements RopeMember {
         setX(getX() + vector);
     }
 
-    public void moveToSameAxis(int value, boolean isVertically) {
+    // TODO: 13.12.22 Make this happen to all members at each step. 
+    public void moveTowardsSameAxis(int value, boolean isVertically) {
+        int offsetDirectionX = getX() - value;
+        int offsetDirectionY = getY() - value;
+        int offsetX;
+        int offsetY;
+
+        if(offsetDirectionX > 0) offsetX = -1; else offsetX = 1;
+        if(offsetDirectionY > 0) offsetY = -1; else offsetY = 1;
 
         if(isVertically){
             if(getX() != value){
-                setX(value);
+                setX(getX() + offsetX);
             }
         }else{
             if(getY() != value){
-                setY(value);
+                setY(getY() + offsetY);
             }
         }
     }
@@ -58,7 +66,7 @@ public class RopeMemberLinkImpl implements RopeMember {
 
         if (isTooFarAway(prevY, true)){
             moveVertically(vector);
-            moveToSameAxis(prevX, true);
+            moveTowardsSameAxis(prevX, true);
             registerPosition(getX() + "," + getY());
         }
     }
@@ -67,12 +75,14 @@ public class RopeMemberLinkImpl implements RopeMember {
 
         if (isTooFarAway(prevX, false)){
             moveHorizontally(vector);
-            moveToSameAxis(prevY, false);
+            moveTowardsSameAxis(prevY, false);
             registerPosition(getX() + "," + getY());
         }
     }
 
     public void registerPosition(String memberPosition) {
+
+        System.out.println("Link moves now to pos. " + memberPosition);
         if (memberPosition != null){
             positions.add(memberPosition);
         }
