@@ -11,14 +11,13 @@ import java.util.List;
 
 public class Processor {
 
+    private int registrar = 1;
+    int nextSignalTrigger = 20;
+    int cycle = 1;
     private final List<String> lineList;
     private final List<Signal> signalList = new ArrayList<>();
-    private int registrar = 1;
-    private int signalStrengthSum;
-    int nextSignalTrigger = 20;
-    int signalTriggerSteps = 40;
+    private final List<String> displayLineList = new ArrayList<>();
     private final HashSet<Integer> cachedSignalStrengths = new HashSet<>();
-    int cycle = 1;
 
     public Processor(String file) throws IOException {
 
@@ -46,22 +45,22 @@ public class Processor {
     }
 
     public int getSignalStrengthSum() {
-        signalStrengthSum = 0;
-        cachedSignalStrengths.forEach(strength -> {
-            signalStrengthSum += strength;
-        });
-        return signalStrengthSum;
+
+        return cachedSignalStrengths.stream().mapToInt(Integer::intValue).sum();
     }
 
     public List<Signal> getSignalList() {
         return signalList;
     }
 
+    public List<String> getDisplayLineList() {
+        return displayLineList;
+    }
+
     private void checkOnReachedTrigger() {
         if (cycle == nextSignalTrigger) {
             cachedSignalStrengths.add(registrar * nextSignalTrigger);
-            nextSignalTrigger += signalTriggerSteps;
-            DeviceLog.showSignalStrength(registrar, cycle);
+            nextSignalTrigger += Config.SIGNAL_INTERVAL;
         }
     }
 

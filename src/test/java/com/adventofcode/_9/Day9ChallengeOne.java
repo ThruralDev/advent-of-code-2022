@@ -1,6 +1,6 @@
 package com.adventofcode._9;
 
-import com.adventofcode._9.rope.Head;
+import com.adventofcode._9.rope.RopeHead;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.jupiter.api.DisplayName;
@@ -10,7 +10,7 @@ import java.util.HashSet;
 
 public class Day9ChallengeOne {
 
-    Head rope = new Head(0, 0){{
+    RopeHead rope = new RopeHead(0, 0){{
         moveHorizontally(4, 1);
         moveVertically(4, 1);
         moveHorizontally(3, -1);
@@ -48,6 +48,6 @@ public class Day9ChallengeOne {
     @Test
     public void testInputForChallengeOneToMatchWithExpectedSetOfPositions(){
 
-        Assert.assertEquals(ExpectedPositions, rope.getTailPositionsAsSet());
+        Assert.assertEquals(ExpectedPositions, rope.getNumberOfDifferentTailPositions());
     }
 }

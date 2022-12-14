@@ -14,22 +14,27 @@
 1. Variable number of cycles in 'addx' until x is summed up.
 2. Make class of Signal Strength in a class to stay extensible and testable.
 
-Registrar is now 16 while signal Signal[instruction=addx, value=-9] and cycle 179.
-Registrar is now 16 while signal Signal[instruction=addx, value=-9] and cycle 180.
-Current Signal has strength of 2880 and created with registrar 16 and cycle 180
+# Notes to Challenge 2
 
-Registrar is now 21 while signal Signal[instruction=addx, value=1] and cycle 139.
-Registrar is now 21 while signal Signal[instruction=addx, value=1] and cycle 140.
-Current Signal has strength of 2940 and created with registrar 21 and cycle 140
+- A Sprite is 3 pixels wide.
+- Draws a single pixel during each cycle.
+- X register horizontal position of middle of the sprite.
+- Display has a width of 40 pixel and can have various number of rows below.
 
-Registrar is now 18 while signal Signal[instruction=noop, value=0] and cycle 99.
-Registrar is now 18 while signal Signal[instruction=noop, value=0] and cycle 100.
-Current Signal has strength of 1800 and created with registrar 18 and cycle 100
+Output of short input produce this image:
 
-Registrar is now 19 while signal Signal[instruction=addx, value=-3] and cycle 59.
-Registrar is now 19 while signal Signal[instruction=addx, value=-3] and cycle 60.
-Current Signal has strength of 1140 and created with registrar 19 and cycle 60
+<pre>
+##..##..##..##..##..##..##..##..##..##..
+###...###...###...###...###...###...###.
+####....####....####....####....####....
+#####.....#####.....#####.....#####.....
+######......######......######......####
+#######.......#######.......#######.....
+</pre>
 
-Registrar is now 21 while signal Signal[instruction=addx, value=-1] and cycle 19.
-Registrar is now 21 while signal Signal[instruction=addx, value=-1] and cycle 20.
-Current Signal has strength of 420 and created with registrar 21 and cycle 20
+If cycle draws a pixel on one of the sprite's position in the horizontal, then a '#' is added.
+The sprite moves his position when registrar X is updated.
+
+So we need to keep track of sprites position in tube and then check if the cycles index
+appears in these positions. Then the display rows are going to be created
+

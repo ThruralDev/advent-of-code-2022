@@ -8,7 +8,7 @@ public class RopeHead {
     private int x;
     private int y;
 
-    LinkedList<RopeMember> ropeMembers;
+    LinkedList<RopeMember> ropeMembers = new LinkedList<>();
 
     public RopeHead(int ropeLength, int xPosition, int yPosition) {
         this.x = xPosition;
