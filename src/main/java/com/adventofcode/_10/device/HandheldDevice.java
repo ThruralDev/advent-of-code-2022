@@ -23,4 +23,14 @@ public class HandheldDevice {
 
         return processor.getSignalStrengthSum();
     }
+
+    public List<Signal> readProcessedSignals(){
+
+        return processor.getSignalList();
+    }
+
+    public int readRegistrar() {
+
+        return processor.getRegistrar();
+    }
 }

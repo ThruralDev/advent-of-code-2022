@@ -1,6 +1,5 @@
 # Core information in description
 
-- It seems to be some kind of cathode-ray tube screen and simple CPU.
 - Both driven by a *precise* clock circuit.
 - The clock circuit ticks at a *constant* rate; each *tick* is called a *cycle*.
 - Figuring out the signal being sent by the CPU.
