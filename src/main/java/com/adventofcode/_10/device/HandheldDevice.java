@@ -33,9 +33,4 @@ public class HandheldDevice {
 
         return processor.getRegistrar();
     }
-
-    public List<String> readDisplayLines() {
-
-        return processor.getDisplayLineList();
-    }
 }
