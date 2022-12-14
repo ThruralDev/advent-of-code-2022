@@ -18,7 +18,7 @@ public class Processor {
     int nextSignalTrigger = 20;
     int signalTriggerSteps = 40;
     private final HashSet<Integer> cachedSignalStrengths = new HashSet<>();
-    int cycle = 0;
+    int cycle = 1;
 
     public Processor(String file) throws IOException {
 
@@ -27,10 +27,10 @@ public class Processor {
 
             String instruction = line.split(" ")[0];
             boolean hasValue = line.split(" ").length > 1;
-            if(hasValue){
+            if (hasValue) {
                 int value = Integer.parseInt(line.split(" ")[1]);
                 signalList.add(new Signal(instruction, value));
-            }else{
+            } else {
                 signalList.add(new Signal(instruction, 0));
             }
         });
@@ -45,11 +45,8 @@ public class Processor {
         return registrar;
     }
 
-    public void setRegistrar(int registrar) {
-        this.registrar = registrar;
-    }
-
     public int getSignalStrengthSum() {
+        signalStrengthSum = 0;
         cachedSignalStrengths.forEach(strength -> {
             signalStrengthSum += strength;
         });
@@ -60,7 +57,7 @@ public class Processor {
         return signalList;
     }
 
-    private void checkOnReachedTrigger(){
+    private void checkOnReachedTrigger() {
         if (cycle == nextSignalTrigger) {
             cachedSignalStrengths.add(registrar * nextSignalTrigger);
             nextSignalTrigger += signalTriggerSteps;
@@ -75,24 +72,19 @@ public class Processor {
             String signalInstruction = signal.instruction();
             int signalValue = signal.value();
 
-            try {
-                switch (signalInstruction) {
+            switch (signalInstruction) {
 
-                    case "noop" -> {
-                        DeviceLog.showSignalProcessStatus(registrar, signal, cycle);
+                case "noop" -> {
+                    checkOnReachedTrigger();
+                    cycle++;
+                }
+                case "addx" -> {
+                    for (int i = 0; i < 2; i++) {
                         checkOnReachedTrigger();
                         cycle++;
                     }
-                    case "addx" -> {
-                        for(int i = 0; i < 2; i++){
-                            DeviceLog.showSignalProcessStatus(registrar, signal, cycle);
-                            checkOnReachedTrigger();
-                            cycle++;
-                        }
-                    }
+                    registrar += signalValue;
                 }
-            } finally {
-                registrar += signalValue;
             }
         });
         System.out.println("Sum of all signal strengths is " + getSignalStrengthSum());
